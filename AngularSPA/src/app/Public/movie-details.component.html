@@ -1,1 +1,71 @@
-<p>movie-details works!</p>
+<div class="container-fluid" style="font-size:small; font-family:Georgia, 'Times New Roman', Times, serif">
+    <div class="row bg-light">
+        <div class="col-4">
+            <img src="{{movieDetails.posterUrl}}" alt="{{movieDetails.title}}" class="img-fluid float-end" style="width:20vw; height:auto;" />
+        </div>
+        <div class="col-6 py-3 px-5">
+            <div class="hstack gap-2 justify-content-between">
+                <h2>{{movieDetails.title}}</h2>
+                <button type="submit" style="background-color:transparent; border:0; padding:0;"><i class="bi-star h4 text-warning"></i></button>
+            </div>
+            <p class="text-dark-50 mb-2" style="font-size:small">{{movieDetails.tagline}}</p>
+            <div class="hstack gap-1 justify-content-end fw-bold">
+                 <span class="badge rounded-pill bg-secondary ms-1" *ngFor="let genre of movieDetails?.genres">{{genre.name}}</span>
+            </div>
+            <p class="fw-semibold text-dark-50">
+                <span>{{movieDetails.runTime}} m | </span>
+                <span>{{movieDetails.releaseDate|date:'y'}}</span>
+            </p>
+            <p class="badge bg-success fw-bold">8.9</p>
+            <p>{{movieDetails.overview}}</p>
+        </div>
+        <div class="col-2 py-5 pe-5">
+            <div class="vstack gap-3">
+                <a class="btn btn-sm btn-secondary"><i class="bi-card-text me-2"></i>review</a>
+                <a class="btn btn-sm btn-outline-secondary">BUY {{movieDetails.price | currency}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <h3>Movie Facts</h3>
+            <a>Release Date {{movieDetails.releaseDate|date:"mediumDate"}}</a>
+            <br />
+            <hr />
+            <a>Run Time {{movieDetails.runTime}} m</a>
+            <br />
+            <hr />
+            <a>Box Office {{movieDetails.revenue | currency}}</a>
+            <br />
+            <hr />
+            <a>Budget {{movieDetails.budget | currency}}</a>
+            <br />
+            <hr />
+            <h3>Trailers</h3>
+            <hr />
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent" *ngFor="let trailer of movieDetails.trailers">
+                        <i class="bi-youtube me-1"></i>
+                        <a href="{{trailer.trailerUrl}}" class="text-decoration-none text-dark">{{trailer.name}}</a>
+                    </li>
+                </ul>
+        </div>
+        <div class="col">
+            <h3>Cast</h3>
+            <hr />
+            <ul class="list-group list-group-flush">
+                 <li class="list-group-item" *ngFor="let cast of movieDetails.casts">
+                    <a routerLink="/Cast-Details/{{cast.id}}" class="text-decoration-none text-dark">
+                        <div class="hstack">
+                            <img class="img-fluid rounded-circle" style="width:2vw" src="{{cast.profilePath}}" alt="@cast.Name">
+                            <span class="align-self-start" style="width:15vw; margin-left: 4vw;">{{cast.name}}</span>
+                            as
+                            <span class="align-self-start" style="width:15vw; margin-left: 4vw;">{{cast.character}}</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+</div>
